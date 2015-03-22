@@ -1,17 +1,31 @@
 package com.inkbrain.www.inkbrain;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
 
 public class MainActivity extends ActionBarActivity {
+
+    //Create Web View.
+    private WebView mWebView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Connect webview to the id in the layout and the website to parse in webview.
+        mWebView =(WebView) findViewById(R.id.activity_main_webview);
+        WebSettings webSettings=mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        mWebView.loadUrl("http://www.inkbrain.in");
+
+        //Force site to open in WebView and not in Browser.
+        mWebView.setWebViewClient(new myWebViewClient());
     }
 
 
